@@ -1,0 +1,15 @@
+.tip-percentage-radios {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: .8rem;
+
+    .input-group {
+
+        input {
+
+            &::placeholder {
+                font-size: 1.4rem;
+            }
+        }
+    }
+}

@@ -1,0 +1,20 @@
+@use 'sass:map';
+
+@import './variables.scss';
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+  background-color: map.get($theme-colors, 'light-grayish-cyan');
+  font-family: $font-main;
+}
+
+body {
+  margin: 0;
+}
