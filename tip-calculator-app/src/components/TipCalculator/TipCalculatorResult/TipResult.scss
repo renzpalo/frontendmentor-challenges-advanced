@@ -1,0 +1,32 @@
+@use 'sass:map';
+
+@import '../../../variables.scss';
+
+.tip-result {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: 700;
+
+    .tip-result-label {
+
+        p {
+            margin: 0;
+            color: #fff;
+        }
+
+        small {
+            color: map.get($theme-colors, 'dark-grayish-cyan');
+        }
+    }
+
+    .tip-result-amount {
+
+        p {
+            margin: 0;
+            color: map.get($theme-colors, 'primary');
+            font-size: 2rem;
+        }
+    }
+}

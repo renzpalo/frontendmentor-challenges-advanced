@@ -1,0 +1,40 @@
+@use 'sass:map';
+
+@import '../../../variables.scss';
+
+.input-group {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    position: relative;
+
+    .input-icon {
+        position: absolute;
+        left: 1rem;
+    }
+
+    input {
+        flex: 1;
+        width: 100%;
+        padding: .4rem 1rem;
+        background-color: map.get($theme-colors, 'very-light-grayish-cyan');
+        border: none;
+        border-radius: 8px;
+        color: map.get($theme-colors, 'dark-cyan');
+        font-family: inherit;
+        font-size: 1.6rem;
+        font-weight: 700;
+        text-align: right;
+
+        &:focus {
+            outline: 2px solid map.get($theme-colors, 'primary');
+        }
+
+        &::-webkit-outer-spin-button,
+        &::-webkit-inner-spin-button {
+            display: none;
+            appearance: none;
+            margin: 0;
+        }
+    }
+}

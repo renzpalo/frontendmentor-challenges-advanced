@@ -1,0 +1,29 @@
+@use 'sass:map';
+
+@import '../../../variables.scss';
+
+.tip-calculator-results {
+    display: flex;
+    flex-flow: column wrap;
+    gap: 1rem;
+    padding: 2rem;
+    background-color: map.get($theme-colors, 'dark-cyan');
+    border-radius: 16px;
+
+    .button {
+        margin-top: 2rem;
+        padding: .6rem 2rem;
+        border: none;
+        border-radius: 6px;
+        font-family: inherit;
+        font-size: 1.4rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        outline: none;
+    }
+
+    .button-primary {
+        background-color: map.get($theme-colors, 'primary');
+        color: map.get($theme-colors, 'dark-cyan');;
+    }
+}
