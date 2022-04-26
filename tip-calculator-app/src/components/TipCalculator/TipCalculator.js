@@ -37,8 +37,17 @@ const TipCalculator = () => {
     const [tipAmount, setTipAmount] = useState(0);
     const [totalAmount, setTotalAmount] = useState(0);
 
+    const [inputBillError, setInputBillError] = useState(false);
+    const [inputNumOfPeopleError, setInputNumOfPeopleError] = useState(false);
+
     const handleInputBillChange = (event) => {
         let eventValue = 0;
+
+        if(parseFloat(event.target.value) <= 0) {
+            setInputBillError(true);
+        } else {
+            setInputBillError(false);
+        }
 
         if(parseFloat(event.target.value) > 0) {
             eventValue = event.target.value;
@@ -77,6 +86,12 @@ const TipCalculator = () => {
     const handleInputNumOfPeople = (event) => {
         let eventValue = 0;
 
+        if(parseFloat(event.target.value) <= 0) {
+            setInputNumOfPeopleError(true);
+        } else {
+            setInputNumOfPeopleError(false);
+        }
+
         if(parseFloat(event.target.value) > 0) {
             eventValue = event.target.value;
         } else {
@@ -113,7 +128,7 @@ const TipCalculator = () => {
             <TipCalculatorPanel>
                 <TipCalculatorForm>
                     <FormGroup>
-                        <LabelGroup labelName={inputs.inputBill} />
+                        <LabelGroup labelName={inputs.inputBill} hasError={inputBillError} />
                         <InputGroup iconImage={inputs.inputBill.icon}>
                             <input
                                 onChange={handleInputBillChange} 
@@ -183,7 +198,7 @@ const TipCalculator = () => {
                         </RadioGroup>
                     </FormGroup>
                     <FormGroup>
-                        <LabelGroup labelName={inputs.inputNumOfPeople} />
+                        <LabelGroup labelName={inputs.inputNumOfPeople} hasError={inputNumOfPeopleError} />
                         <InputGroup iconImage={inputs.inputNumOfPeople.icon}>
                             <input 
                                 type="number" 
