@@ -26,7 +26,8 @@
         text-align: center;
         cursor: pointer;
 
-        &:focus {
+        &:focus,
+        &:checked {
             background-color: map.get($theme-colors, 'light-grayish-cyan');
             color: map.get($theme-colors, 'dark-cyan');
         }
