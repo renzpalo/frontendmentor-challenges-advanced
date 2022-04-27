@@ -2,8 +2,30 @@
     display: flex;
     flex-flow: column wrap;
     gap: 2rem;
-    margin: 2rem 0;
+    max-width: 920px;
+    margin: 2rem auto;
     padding: 2rem;
     background-color: #fff;
     border-radius: 16px;
+}
+
+@media (min-width: 768px) {
+    .tip-calculator-panel {
+        padding: 2.4rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .tip-calculator-panel {
+        flex-flow: row nowrap;
+        gap: 3.2rem;
+
+        .tip-calculator-form {
+            flex: 1.2;
+        }
+
+        .tip-calculator-results {
+            flex: 1;
+        }
+    }
 }

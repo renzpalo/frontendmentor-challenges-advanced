@@ -5,10 +5,18 @@
 .tip-calculator-results {
     display: flex;
     flex-flow: column wrap;
+    justify-content: space-between;
     gap: 1rem;
-    padding: 2rem;
+    max-width: 500px;
+    padding: 2.4rem 1.4rem 1.4rem;
     background-color: map.get($theme-colors, 'dark-cyan');
     border-radius: 16px;
+
+    .tip-results {
+        display: flex;
+        flex-flow: column wrap;
+        gap: 1rem;
+    }
 
     .button {
         margin-top: 2rem;
@@ -20,10 +28,22 @@
         font-weight: 700;
         text-transform: uppercase;
         outline: none;
+        cursor: pointer;
+        transition: .2s background-color ease;
     }
 
     .button-primary {
         background-color: map.get($theme-colors, 'primary');
-        color: map.get($theme-colors, 'dark-cyan');;
+        color: map.get($theme-colors, 'dark-cyan');
+
+        &:hover {
+            background-color: map.get($theme-colors, 'light-grayish-cyan');
+        }
+    }
+}
+
+@media (min-width: 768px) {
+    .tip-calculator-results {
+        padding: 2.8rem;
     }
 }

@@ -30,29 +30,27 @@ const TipCalculator = () => {
         },
     }
 
-    const [inputBill, setInputBill] = useState(0);
+    const [inputBill, setInputBill] = useState();
     const [inputTipPercentage, setInputTipPercentage] = useState(0.05);
-    const [inputNumOfPeople, setInputNumOfPeople] = useState(1);
+    const [inputNumOfPeople, setInputNumOfPeople] = useState();
 
-    const [tipAmount, setTipAmount] = useState(0);
-    const [totalAmount, setTotalAmount] = useState(0);
+    const [tipAmount, setTipAmount] = useState(parseFloat(0.00).toFixed(2));
+    const [totalAmount, setTotalAmount] = useState(parseFloat(0.00).toFixed(2));
 
     const [inputBillError, setInputBillError] = useState(false);
     const [inputNumOfPeopleError, setInputNumOfPeopleError] = useState(false);
 
     const handleInputBillChange = (event) => {
-        let eventValue = 0;
+        let eventValue = event.target.value;
+
+        console.log(event.target);
 
         if(parseFloat(event.target.value) <= 0) {
             setInputBillError(true);
+            event.target.classList.add('input-error');
         } else {
             setInputBillError(false);
-        }
-
-        if(parseFloat(event.target.value) > 0) {
-            eventValue = event.target.value;
-        } else {
-            eventValue = 0;
+            event.target.classList.remove('input-error');
         }
 
         const calculatedTipAmount = ((parseFloat(eventValue) * parseFloat(inputTipPercentage)) / parseFloat(inputNumOfPeople)).toFixed(2);
@@ -62,8 +60,6 @@ const TipCalculator = () => {
 
         setTipAmount(calculatedTipAmount);
         setTotalAmount(calculatedTotalAmount);
-
-        console.log('inputBill: ', inputBill);
     };
 
     const handleTipRadioButtonChange = (event) => {
@@ -84,18 +80,14 @@ const TipCalculator = () => {
     };
 
     const handleInputNumOfPeople = (event) => {
-        let eventValue = 0;
+        let eventValue = event.target.value;
 
         if(parseFloat(event.target.value) <= 0) {
             setInputNumOfPeopleError(true);
+            event.target.classList.add('input-error');
         } else {
             setInputNumOfPeopleError(false);
-        }
-
-        if(parseFloat(event.target.value) > 0) {
-            eventValue = event.target.value;
-        } else {
-            eventValue = 0;
+            event.target.classList.remove('input-error');
         }
 
         const calculatedTipAmount = ((parseFloat(inputBill) * parseFloat(inputTipPercentage)) / parseFloat(eventValue)).toFixed(2);
@@ -105,8 +97,6 @@ const TipCalculator = () => {
 
         setTipAmount(calculatedTipAmount);
         setTotalAmount(calculatedTotalAmount);
-
-        console.log('inputNumOfPeople: ', inputNumOfPeople);
     };
 
     const handleInputOnFocus = (event) => {
@@ -116,11 +106,11 @@ const TipCalculator = () => {
     };
 
     const handleResetButton = () => {
-        setInputBill(0);
-        setInputTipPercentage(0);
-        setInputNumOfPeople(0);
-        setTipAmount(0);
-        setTotalAmount(0);
+        setInputBill();
+        setInputTipPercentage(0.05);
+        setInputNumOfPeople();
+        setTipAmount(parseFloat(0.00).toFixed(2));
+        setTotalAmount(parseFloat(0.00).toFixed(2));
     };
     
     return (
@@ -135,10 +125,13 @@ const TipCalculator = () => {
                                 onFocus={handleInputOnFocus}
                                 type="number" 
                                 min={0} 
-                                value={inputBill} />
+                                value={inputBill} 
+                                placeholder="0" 
+                                />
                         </InputGroup>
                     </FormGroup>
                     <FormGroup>
+                        <LabelGroup labelName={inputs.inputTipPercentage} />
                         <RadioGroup>
                             <input 
                                 type="radio" 
@@ -204,20 +197,23 @@ const TipCalculator = () => {
                                 type="number" 
                                 onChange={handleInputNumOfPeople} 
                                 onFocus={handleInputOnFocus} 
-                                value={inputNumOfPeople}
+                                value={inputNumOfPeople} 
+                                placeholder="0"
                                 />
                         </InputGroup>
                     </FormGroup>
                 </TipCalculatorForm>
                 <TipCalculatorResults>
-                    <TipResult 
-                        tipLabel="Tip Amount"
-                        tipAmount={tipAmount}
-                         />
-                    <TipResult 
-                        tipLabel="Total"
-                        tipAmount={totalAmount} 
-                         />
+                    <div className="tip-results">
+                        <TipResult 
+                            tipLabel="Tip Amount"
+                            tipAmount={tipAmount}
+                            />
+                        <TipResult 
+                            tipLabel="Total"
+                            tipAmount={totalAmount} 
+                            />
+                    </div>
                     <button 
                         type="button" 
                         className="button button-primary" 

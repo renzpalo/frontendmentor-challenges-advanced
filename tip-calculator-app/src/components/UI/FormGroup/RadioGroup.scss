@@ -7,9 +7,15 @@
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
     gap: 1rem;
+    margin-top: .6rem;
 
     input {
         height: 50px;
+
+        &::placeholder {
+            color: map.get($theme-colors, 'dark-grayish-cyan');
+            font-size: 1.5rem;
+        }
     }
 
     input[type=radio] {
@@ -28,7 +34,7 @@
 
         &:focus,
         &:checked {
-            background-color: map.get($theme-colors, 'light-grayish-cyan');
+            background-color: map.get($theme-colors, 'primary');
             color: map.get($theme-colors, 'dark-cyan');
         }
 
@@ -40,6 +46,11 @@
     label {
         display: none;
     }
+}
 
-
+@media (min-width: 768px) {
+    .radio-group {
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+    }
 }

@@ -1,4 +1,9 @@
 #tip-calculator-page {
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
     padding: 4rem 0;
     
     #logo-section {
@@ -7,5 +12,11 @@
         .logo-image {
             margin: 0 auto;
         }
+    }
+}
+
+@media (min-width: 1024px) {
+    #tip-calculator-page {
+        gap: 2.8rem;
     }
 }

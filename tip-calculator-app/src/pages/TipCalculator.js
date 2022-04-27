@@ -7,6 +7,7 @@ import Columns from '../components/Grid/Columns';
 import Column from '../components/Grid/Column';
 
 import TipCalculatorApp from '../components/TipCalculator/TipCalculator';
+import Footer from './sections/Footer';
 
 const TipCalculator = () => {
     return (
@@ -29,6 +30,7 @@ const TipCalculator = () => {
                     </Columns>
                 </ContainerFull>
             </section>
+            <Footer />
         </main>
     ); 
 };

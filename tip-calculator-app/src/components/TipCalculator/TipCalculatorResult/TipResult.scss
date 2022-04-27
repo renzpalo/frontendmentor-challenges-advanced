@@ -30,3 +30,16 @@
         }
     }
 }
+
+@media (min-width: 1024px) {
+    .tip-result {
+
+        .tip-result-amount {
+
+            p {
+                font-size: 2.8rem;
+                text-align: right;
+            }
+        }
+    }
+}
