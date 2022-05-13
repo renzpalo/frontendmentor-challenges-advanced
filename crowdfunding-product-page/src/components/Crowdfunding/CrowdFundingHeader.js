@@ -1,4 +1,5 @@
 import Panel from "../UI/Panel";
+import ProjectModal from "../Modal/ProjectModal";
 
 const CrowdFundingHeader = () => {
   return (
@@ -13,6 +14,7 @@ const CrowdFundingHeader = () => {
           <small>Bookmark</small>
         </button>
       </div>
+      <ProjectModal />
     </Panel>
   );
 };

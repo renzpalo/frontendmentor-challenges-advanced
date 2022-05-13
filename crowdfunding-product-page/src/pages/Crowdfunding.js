@@ -4,9 +4,16 @@ import CrowdFundingStats from "../components/Crowdfunding/CrowdFundingStats";
 import Container from "../components/Grid/Container";
 import Header from "../components/Header";
 import PageCover from "../components/UI/PageCover";
-import Panel from "../components/UI/Panel";
+import ProjectModal from "../components/Modal/ProjectModal";
 
 const Crowdfunding = () => {
+  const crowdfundStats = {
+    fundRaised: 89914,
+    fundGoal: 100000,
+    fundBackers: 5007,
+    fundDaysLeft: 56
+  };
+
   return (
     <div id="crowdfunding-page">
       <Header />
@@ -15,8 +22,9 @@ const Crowdfunding = () => {
         <section id="crowdfunding-section">
           <Container>
             <CrowdFundingHeader />
-            <CrowdFundingStats />
+            <CrowdFundingStats crowdfundStats={crowdfundStats} />
             <CrowdFundingAbout />
+            <ProjectModal />
           </Container>
         </section>
       </main>

@@ -31,6 +31,7 @@ h1, h2, h3, h4, h5, h6 {
 
 p {
   color: map.get($theme-colors, 'gray');
+  line-height: 1.6rem;
 }
 
 .container {
@@ -78,6 +79,7 @@ header {
   font-size: 1rem;
   font-weight: 700;
   outline: none;
+  cursor: pointer;
 }
 
 .button-primary {
@@ -108,23 +110,77 @@ header {
   }
 }
 
+.button-close {
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  margin: 0;
+  padding: 0;
+  background-image: url(../public/images/icon-close-menu.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: black;
+  border: none;
+  outline: none;
+}
+
+// Inputs
+.input-radio {
+  appearance: none;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 24px;
+  height: 24px;
+  margin: 0;
+  border: 1px solid gainsboro;
+  border-radius: 100%;
+
+  &::before {
+    content: '';
+    display: none;
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background-color: map.get($theme-colors, 'primary');
+    border-radius: 100%;
+  }
+
+  &:checked {
+
+    &::before {
+      display: block;
+    }
+  }
+}
+
 .page-cover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
   width: 100%;
   min-height: 300px;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+  z-index: -999;
 }
 
 .panel {
+  width: 100%;
+  max-width: 730px;
+  margin: 0 auto;
   padding: 1.4rem;
   background-color: #fff;
+  border: 1px solid gainsboro;
   border-radius: 10px;
-  box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.05);
 }
 
 #crowdfunding-section {
-  transform: translateY(-2%);
+  padding: 8rem 0;
 
   .container {
     display: flex;
@@ -134,8 +190,10 @@ header {
 
   // CrowdFundingHeader
   .header-panel {
-    position: relative;
-    text-align: center;
+
+    > h1, > p {
+      text-align: center;
+    }
 
     > img {
       position: absolute;
@@ -174,7 +232,7 @@ header {
         width: 100px;
         height: 1px;
         margin: 0 auto;
-        background-color: map.get($theme-colors, 'gray');
+        background-color: gainsboro;
       }
     }
 
@@ -186,7 +244,7 @@ header {
       border-radius: 32px;
 
       .stats-progress-bar__fill {
-        width: 70%;
+        width: 0%;
         min-height: 10px;
         background-color: map.get($theme-colors, 'primary');
         border-radius: 32px;
@@ -200,12 +258,147 @@ header {
       display: grid;
       grid-template-columns: 1;
       gap: 1rem;
+
+      .crowd-funding__project {
+
+        .project-title {
+          display: flex;
+          flex-flow: column wrap;
+
+          h3 {
+            margin: 0 0 .4rem;
+            font-size: 1rem;
+          }
+
+          p {
+            margin: 0;
+            color: map.get($theme-colors, 'primary');
+          }
+        }
+
+        .project-description {
+          font-size: 15px;
+        }
+
+        .project-controls {
+
+          p {
+            margin: 2rem 0;
+
+            b {
+              color: map.get($theme-colors, 'black');
+              font-size: 2rem;
+              vertical-align: bottom;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// Modals
+.project-modal {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  min-height: 100%;
+  padding: 8rem 1.4rem;
+  background: rgba(0, 0, 0, 0.35);
+  z-index: 999;
+
+  .modal-panel {
+    max-width: 730px;
+    margin: 0 auto;
+    padding: 1.4rem;
+    background-color: #fff;
+    border-radius: 10px;
+
+    .modal-panel__title {
+      display: flex;
+      flex-flow: row nowrap;
+      align-items: center;
+      justify-content: space-between;
+
+      h2 {
+        margin: 0;
+      }
+    }
+
+    .modal-panel__description {
+      font-size: .9rem;
+    }
+  }
+}
+
+// Project List
+.project-list {
+  display: grid;
+  gap: 1rem;
+
+  .project-item {
+    padding: 1.4rem;
+    border: 1px solid gainsboro;
+    border-radius: 8px;
+    cursor: pointer;
+
+    .project-item__title {
+
+      .radio-group {
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: center;
+        gap: 1rem;
+
+        .text-group {
+
+          label {
+            display: block;
+            margin-bottom: .4rem;
+            font-size: .9rem;
+            font-weight: 700;
+          }
+
+          small {
+            color: map.get($theme-colors, 'primary');
+            font-size: .9rem;
+          }
+        }
+      }
+    }
+
+    .project-item__description {
+      font-size: .9rem;
+    }
+
+    .project-item__quantity {
+      margin: 0;
+
+      b {
+        margin-right: .4rem;
+        color: map.get($theme-colors, 'black');
+        font-size: 1.4rem;
+      }
     }
   }
 }
 
 @media (min-width: 768px) {
+  .container {
+    padding: 0 4rem;
+  }
+
   .page-cover {
     min-height: 400px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    padding: 0 1.4rem;
   }
 }
