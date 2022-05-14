@@ -1,17 +1,28 @@
-const ProjectItem = () => {
+import ProjectItemControl from "./ProjectItemControl";
+
+const ProjectItem = (props) => {
   return (
     <div className="project-item">
       <div className="project-item__title">
         <div className="radio-group">
           <input type="radio" name="project-radio" className="input-radio" />
           <div className="text-group">
-            <label htmlFor="project-radio">Pledge with no reward</label>
-            <small>Pledge $25 or more</small>
+            <label htmlFor="project-radio">{props.project.title}</label>
+            {props.project.pledgeAmount > 0 && 
+              <small>
+                Pledge ${props.project.pledgeAmount} or more
+              </small>
+            }
           </div>
         </div>
       </div>
-      <p className="project-item__description">Choose to support us without a reward if you simply believe in our project. As a backer, you will be signed up to receive product updates via email.</p>
-      <p className="project-item__quantity"><b>101</b> left</p>
+      <p className="project-item__description">{props.project.description}</p>
+      {props.project.pledgeAmount > 0 && 
+        <p className="project-item__quantity"><b>{props.project.quantity}</b>left</p>
+      }
+      {props.project.pledgeAmount > 0 && 
+        <ProjectItemControl pledgeAmount={props.project.pledgeAmount} />
+      }
     </div>
   );
 };
