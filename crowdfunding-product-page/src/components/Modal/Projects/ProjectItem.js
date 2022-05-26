@@ -2,10 +2,19 @@ import ProjectItemControl from "./ProjectItemControl";
 
 const ProjectItem = (props) => {
   return (
-    <div className="project-item">
+    <div 
+      id={`project-item__${props.id}`}
+      className={`project-item ${props.isSelected ? 'selected' : ''}`}
+      onClick={props.onClick}
+    >
       <div className="project-item__title">
         <div className="radio-group">
-          <input type="radio" name="project-radio" className="input-radio" />
+          <input 
+            type="radio" 
+            name="project-radio" 
+            className="input-radio" 
+            checked={props.isSelected}
+          />
           <div className="text-group">
             <label htmlFor="project-radio">{props.project.title}</label>
             {props.project.pledgeAmount > 0 && 
@@ -20,7 +29,7 @@ const ProjectItem = (props) => {
       {props.project.pledgeAmount > 0 && 
         <p className="project-item__quantity"><b>{props.project.quantity}</b>left</p>
       }
-      {props.project.pledgeAmount > 0 && 
+      {props.project.pledgeAmount > 0 && props.isSelected &&
         <ProjectItemControl pledgeAmount={props.project.pledgeAmount} />
       }
     </div>

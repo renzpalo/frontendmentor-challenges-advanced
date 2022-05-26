@@ -1,13 +1,26 @@
+import React, { useRef } from 'react';
+
 import ProjectList from "./Projects/ProjectList";
 
 const ProjectModal = (props) => {
+  const refProjectModal = useRef();
 
-  const handleModalClose = (e) => {
-    
+  const handleModalClose = () => {
+    console.log(refProjectModal.current.style.display);
+
+    if(refProjectModal.current.style.display == 'block') {
+      refProjectModal.current.style.display = 'none';
+
+      props.onOpenProjectModal(false);
+    }
   }
 
   return (
-    <div className="project-modal" style={{ display: props.modalDisplay }}>
+    <div 
+      className="project-modal" 
+      style={{ display: props.modalDisplay ? 'block' : 'none' }} 
+      ref={refProjectModal}
+    >
       <div className="modal-panel">
         <div className="modal-panel__title">
           <h2>Back this project</h2>

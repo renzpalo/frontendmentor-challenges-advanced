@@ -10,7 +10,7 @@ import ProjectModal from "../components/Modal/ProjectModal";
 import Footer from "../components/Footer";
 
 const Crowdfunding = () => {
-  const [modalDisplay, setModalDisplay] = useState('block');
+  const [modalDisplay, setModalDisplay] = useState(false);
 
   const crowdfundProjects = [
     {
@@ -46,6 +46,10 @@ const Crowdfunding = () => {
     fundDaysLeft: 56
   };
 
+  const handleOpenProjectModal = (isOpen) => {
+    setModalDisplay(isOpen);
+  };
+
   return (
     <div id="crowdfunding-page">
       <Header />
@@ -53,10 +57,17 @@ const Crowdfunding = () => {
       <main>
         <section id="crowdfunding-section">
           <Container>
-            <CrowdFundingHeader />
+            <CrowdFundingHeader onOpenProjectModal={handleOpenProjectModal} />
             <CrowdFundingStats crowdfundStats={crowdfundStats} />
-            <CrowdFundingAbout crowdfundProjects={crowdfundProjects} />
-            <ProjectModal crowdfundProjects={crowdfundProjects} />
+            <CrowdFundingAbout 
+              crowdfundProjects={crowdfundProjects} 
+              onOpenProjectModal={handleOpenProjectModal} 
+            />
+            <ProjectModal 
+              crowdfundProjects={crowdfundProjects} 
+              modalDisplay={modalDisplay} 
+              onOpenProjectModal={handleOpenProjectModal}
+            />
           </Container>
         </section>
       </main>

@@ -1,11 +1,15 @@
 import CrowdFundingProject from "./CrowdFundingProject";
 
-const CrowdFundingProjects = () => {
+const CrowdFundingProjects = (props) => {
+  const handleOpenProjectModal = (isOpen) => {
+    props.onOpenProjectModal(isOpen);
+  };
+
   return (
     <div className="crowd-funding__projects">
-      <CrowdFundingProject />
-      <CrowdFundingProject />
-      <CrowdFundingProject />
+      <CrowdFundingProject onOpenProjectModal={handleOpenProjectModal} />
+      <CrowdFundingProject onOpenProjectModal={handleOpenProjectModal} />
+      <CrowdFundingProject onOpenProjectModal={handleOpenProjectModal} />
     </div>
   );
 };

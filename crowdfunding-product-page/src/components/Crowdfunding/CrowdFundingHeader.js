@@ -1,13 +1,23 @@
 import Panel from "../UI/Panel";
 
-const CrowdFundingHeader = () => {
+const CrowdFundingHeader = (props) => {
+  const handleOpenProjectModal = () => {
+    props.onOpenProjectModal(true);
+  };
+
   return (
     <Panel className="header-panel">
       <img src="images/logo-mastercraft.svg" alt="Mastercraft Logo" />
       <h1>Mastercraft Bamboo Monitor Riser</h1>
       <p>A beautiful & handcrafted monitor stand to reduce neck and eye strain.</p>
       <div className="button-group">
-        <button type="button" className="button button-primary">Back this project</button>
+        <button 
+          type="button" 
+          className="button button-primary" 
+          onClick={handleOpenProjectModal} 
+        >
+          Back this project
+        </button>
         <button type="button" className="button-icon button-secondary">
           <img src="images/icon-bookmark.svg" alt="Bookmark Icon" />
           <small>Bookmark</small>
