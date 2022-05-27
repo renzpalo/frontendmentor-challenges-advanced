@@ -7,24 +7,31 @@ const ProjectList = (props) => {
 
   const handleSelectProjectItem = (e) => {
     setSelectedProjectItem(e.currentTarget.id);
+  };
 
-    console.log(selectedProjectItem);
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
   };
 
   return (
-    <div className="project-list">
-      {props.crowdfundProjects.map((project, index) => {
-        return (
-          <ProjectItem 
-            id={index} 
-            key={index} 
-            project={project} 
-            onClick={handleSelectProjectItem} 
-            isSelected={selectedProjectItem == 'project-item__' + index ? true : false}
-          />
-        );
-      })}
-    </div>
+    <form 
+      id="project-list__form" 
+      onSubmit={handleFormSubmit}
+    >
+      <div className="project-list">
+        {props.crowdfundProjects.map((project, index) => {
+          return (
+            <ProjectItem 
+              id={index} 
+              key={index} 
+              project={project} 
+              onClick={handleSelectProjectItem} 
+              isSelected={selectedProjectItem == 'project-item__' + index ? true : false}
+            />
+          );
+        })}
+      </div>
+    </form>
   );
 };
 

@@ -6,8 +6,6 @@ const ProjectModal = (props) => {
   const refProjectModal = useRef();
 
   const handleModalClose = () => {
-    console.log(refProjectModal.current.style.display);
-
     if(refProjectModal.current.style.display == 'block') {
       refProjectModal.current.style.display = 'none';
 
