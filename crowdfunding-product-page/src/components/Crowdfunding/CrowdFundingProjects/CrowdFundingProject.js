@@ -6,19 +6,25 @@ const CrowdFundingProject = (props) => {
   };
 
   return (
-    <Panel className="crowd-funding__project">
+    <Panel 
+      className={`
+        crowd-funding__project 
+        ${props.project.quantity <= 0 ? 'disabled' : ''} 
+      `}
+    >
       <div className="project-title">
-        <h3>Bamboo Stand</h3>
-        <p>Pledge $25 or more</p>
+        <h3>{props.project.title}</h3>
+        <p>Pledge ${props.project.pledgeAmount} or more</p>
       </div>
-      <p className="project-description">You get an ergonomic stand made of natural bamboo. You've helped us launch our promotional campaign, and you’ll be added to a special Backer member list.</p>
+      <p className="project-description">{props.project.description}</p>
       <div className="project-controls">
-        <p><b>101</b> left</p>
+        <p><b>{props.project.quantity}</b> left</p>
         <button 
-          className="button button-primary" 
-          onClick={handleOpenProjectModal}
+          className="button button-primary"
+          onClick={handleOpenProjectModal} 
+          disabled={props.project.quantity <= 0 ? true : false}
         >
-          Select Reward
+          {props.project.quantity > 0 ? 'Select Reward' : 'Out of Stock'}
           </button>
       </div>
     </Panel>

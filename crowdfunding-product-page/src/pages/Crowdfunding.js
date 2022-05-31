@@ -8,6 +8,7 @@ import Header from "../components/Header";
 import PageCover from "../components/UI/PageCover";
 import ProjectModal from "../components/Modal/ProjectModal";
 import Footer from "../components/Footer";
+import SuccessModal from '../components/Modal/SuccessModal';
 
 const Crowdfunding = () => {
   const [modalDisplay, setModalDisplay] = useState(false);
@@ -68,6 +69,7 @@ const Crowdfunding = () => {
               modalDisplay={modalDisplay} 
               onOpenProjectModal={handleOpenProjectModal}
             />
+            <SuccessModal />
           </Container>
         </section>
       </main>

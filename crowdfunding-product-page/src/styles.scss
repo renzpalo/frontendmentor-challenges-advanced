@@ -123,6 +123,12 @@ header {
 }
 
 // Buttons
+button:disabled {
+  background-color: rgb(203, 203, 203);
+  color: #fff;
+  cursor: not-allowed;
+}
+
 .button {
   min-height: 56px;
   max-height: 56px;
@@ -330,6 +336,17 @@ header {
 
       .crowd-funding__project {
 
+        &.disabled {
+          cursor: not-allowed;
+          opacity: 50%;
+          -webkit-touch-callout: none;
+          -webkit-user-select: none;
+          -khtml-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
+          user-select: none;
+        }
+
         .project-title {
           display: flex;
           flex-flow: column wrap;
@@ -516,6 +533,30 @@ header {
         }
       }
     }
+  }
+}
+
+.success-modal {
+  display: none;
+  flex-flow: column wrap;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 0 1.4rem;
+  background: rgba(0, 0, 0, 0.35);
+  z-index: 999;
+
+  .success-modal__panel {
+    width: 100%;
+    max-width: 730px;
+    padding: 2rem;
+    background-color: map.get($theme-colors, 'background');
+    border-radius: 10px;
+    text-align: center;
   }
 }
 

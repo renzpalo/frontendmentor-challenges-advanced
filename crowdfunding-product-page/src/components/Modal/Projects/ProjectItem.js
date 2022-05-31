@@ -1,8 +1,31 @@
+import React, { useState } from 'react';
+
 import ProjectItemControl from "./ProjectItemControl";
 
 const ProjectItem = (props) => {
+  const pledgeData = {
+    type: '',
+    amount: ''
+  };
+
+  const [pledgeInputData, setPledgeInputData] = useState(pledgeData);
+
   const handleProjectItemRadioChange = (e) => {
-    console.log('Radio Changed', e.target);
+    setPledgeInputData({
+      type: e.target.value,
+      amount: 1
+    });
+
+    console.log('ProjectItem > radioChange: ', pledgeInputData);
+  };
+
+  const handleInputPledgeAmountValue = (pledgeAmountValue) => {
+    setPledgeInputData({
+      type: '111',
+      amount: pledgeAmountValue
+    });
+
+    console.log('ProjectItem > props: ', pledgeInputData);
   };
 
   return (
@@ -25,6 +48,7 @@ const ProjectItem = (props) => {
             type="radio" 
             name="project-radio" 
             className="input-radio" 
+            value={props.id}
             checked={props.isSelected} 
             onChange={handleProjectItemRadioChange}
           />
@@ -43,7 +67,10 @@ const ProjectItem = (props) => {
         <p className="project-item__quantity"><b>{props.project.quantity}</b>left</p>
       }
       {props.project.pledgeAmount > 0 && props.isSelected &&
-        <ProjectItemControl pledgeAmount={props.project.pledgeAmount} />
+        <ProjectItemControl 
+          pledgeAmount={props.project.pledgeAmount} 
+          inputPledgeAmountValue={handleInputPledgeAmountValue}
+        />
       }
     </div>
   );

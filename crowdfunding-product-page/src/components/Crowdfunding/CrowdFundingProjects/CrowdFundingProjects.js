@@ -7,9 +7,17 @@ const CrowdFundingProjects = (props) => {
 
   return (
     <div className="crowd-funding__projects">
-      <CrowdFundingProject onOpenProjectModal={handleOpenProjectModal} />
-      <CrowdFundingProject onOpenProjectModal={handleOpenProjectModal} />
-      <CrowdFundingProject onOpenProjectModal={handleOpenProjectModal} />
+      {props.crowdfundProjects.map((project, index) => {
+        if(project.pledgeAmount > 0) {
+          return (
+            <CrowdFundingProject 
+              key={index}
+              onOpenProjectModal={handleOpenProjectModal} 
+              project={project}
+            />
+          )
+        }
+      })}
     </div>
   );
 };
