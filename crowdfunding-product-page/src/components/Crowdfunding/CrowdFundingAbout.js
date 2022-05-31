@@ -2,8 +2,8 @@ import Panel from "../UI/Panel";
 import CrowdFundingProjects from "./CrowdFundingProjects/CrowdFundingProjects";
 
 const CrowdFundingAbout = (props) => {
-  const handleOpenProjectModal = (isOpen) => {
-    props.onOpenProjectModal(isOpen);
+  const handleOpenProjectModal = (isOpen, cpId) => {
+    props.onOpenProjectModal(isOpen, cpId);
   };
 
   return (

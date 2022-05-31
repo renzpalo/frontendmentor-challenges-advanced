@@ -2,7 +2,7 @@ import Panel from "../../UI/Panel";
 
 const CrowdFundingProject = (props) => {
   const handleOpenProjectModal = () => {
-    props.onOpenProjectModal(true);
+    props.onOpenProjectModal(true, props.project.id);
   };
 
   return (

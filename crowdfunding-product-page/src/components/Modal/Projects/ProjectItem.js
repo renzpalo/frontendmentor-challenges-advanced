@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import ProjectItemControl from "./ProjectItemControl";
 
@@ -11,31 +11,35 @@ const ProjectItem = (props) => {
   const [pledgeInputData, setPledgeInputData] = useState(pledgeData);
 
   const handleProjectItemRadioChange = (e) => {
-    setPledgeInputData({
-      type: e.target.value,
-      amount: 1
+    setPledgeInputData((prevState) => {
+      return {
+        type: e.target.value,
+        amount: prevState.amount
+      }
     });
 
-    console.log('ProjectItem > radioChange: ', pledgeInputData);
+    props.pledgeAmountData(pledgeInputData);
+
+    console.log('ProjectItem > ', pledgeInputData);
   };
 
   const handleInputPledgeAmountValue = (pledgeAmountValue) => {
-    setPledgeInputData({
-      type: '111',
-      amount: pledgeAmountValue
+    setPledgeInputData((prevState) => {
+      return {
+        type: prevState.type,
+        amount: pledgeAmountValue
+      }
     });
 
-    console.log('ProjectItem > props: ', pledgeInputData);
+    props.pledgeAmountData(pledgeInputData);
+
+    console.log('ProjectItem > ', pledgeInputData);
   };
 
   return (
     <div 
       id={`project-item__${props.id}`}
-      className={
-          `project-item 
-          ${props.isSelected ? 'selected' : ''} 
-          ${props.project.quantity <= 0 && props.project.pledgeAmount > 0 ? 'disabled' : ''}`
-      }
+      className={`project-item ${props.isSelected ? 'selected' : ''} ${props.project.quantity <= 0 && props.project.pledgeAmount > 0 ? 'disabled' : ''}`}
       onClick={
         props.project.quantity <= 0 && 
         props.project.pledgeAmount > 0 ? 

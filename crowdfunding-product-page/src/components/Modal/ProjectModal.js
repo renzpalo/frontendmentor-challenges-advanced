@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useState, useRef } from 'react';
 
 import ProjectList from "./Projects/ProjectList";
 
@@ -9,14 +9,23 @@ const ProjectModal = (props) => {
     if(refProjectModal.current.style.display == 'block') {
       refProjectModal.current.style.display = 'none';
 
-      props.onOpenProjectModal(false);
+      props.onOpenProjectModal(false, null);
     }
   }
+
+  const handleOnPledgeSuccess = (onSuccess) => {
+    if(onSuccess) {
+      handleModalClose();
+      
+      props.onPledgeSuccess(onSuccess);
+    }
+    
+  };
 
   return (
     <div 
       className="project-modal" 
-      style={{ display: props.modalDisplay ? 'block' : 'none' }} 
+      style={{ display: props.modalDisplay.isOpen ? 'block' : 'none' }} 
       ref={refProjectModal}
     >
       <div className="modal-panel">
@@ -25,7 +34,11 @@ const ProjectModal = (props) => {
           <button className="button-close" onClick={handleModalClose}></button>
         </div>
         <p className="modal-panel__description">Want to support us in bringing Mastercraft Bamboo Monitor Riser out in the world?</p>
-        <ProjectList crowdfundProjects={props.crowdfundProjects} />
+        <ProjectList 
+          crowdfundProjects={props.crowdfundProjects} 
+          selectedProject={props.modalDisplay.cpId} 
+          onPledgeSuccess={handleOnPledgeSuccess}
+        />
       </div>
     </div>
   );
