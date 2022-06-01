@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 import ProjectItemControl from "./ProjectItemControl";
 
@@ -8,7 +8,25 @@ const ProjectItem = (props) => {
     amount: ''
   };
 
+  const refRadioButton = useRef();
+
+  const selectedItem = props.selectedItem == 'project-item__' + props.project.id;
+
   const [pledgeInputData, setPledgeInputData] = useState(pledgeData);
+  
+  useEffect(() => {
+    setPledgeInputData((prevState) => {
+      return {
+        type: props.project.id,
+        amount: prevState.amount
+      }
+    });
+
+    console.log(refRadioButton.current.value);
+
+    console.log('ProjectItem > ', pledgeInputData);
+  }, [selectedItem]);
+
 
   const handleProjectItemRadioChange = (e) => {
     setPledgeInputData((prevState) => {
@@ -19,8 +37,6 @@ const ProjectItem = (props) => {
     });
 
     props.pledgeAmountData(pledgeInputData);
-
-    console.log('ProjectItem > ', pledgeInputData);
   };
 
   const handleInputPledgeAmountValue = (pledgeAmountValue) => {
@@ -32,14 +48,12 @@ const ProjectItem = (props) => {
     });
 
     props.pledgeAmountData(pledgeInputData);
-
-    console.log('ProjectItem > ', pledgeInputData);
   };
 
   return (
     <div 
       id={`project-item__${props.id}`}
-      className={`project-item ${props.isSelected ? 'selected' : ''} ${props.project.quantity <= 0 && props.project.pledgeAmount > 0 ? 'disabled' : ''}`}
+      className={`project-item ${selectedItem ? 'selected' : ''} ${props.project.quantity <= 0 && props.project.pledgeAmount > 0 ? 'disabled' : ''}`}
       onClick={
         props.project.quantity <= 0 && 
         props.project.pledgeAmount > 0 ? 
@@ -52,9 +66,10 @@ const ProjectItem = (props) => {
             type="radio" 
             name="project-radio" 
             className="input-radio" 
-            value={props.id}
-            checked={props.isSelected} 
-            onChange={handleProjectItemRadioChange}
+            value={props.project.id}
+            checked={selectedItem} 
+            onChange={handleProjectItemRadioChange} 
+            ref={refRadioButton}
           />
           <div className="text-group">
             <label htmlFor="project-radio">{props.project.title}</label>
@@ -70,7 +85,7 @@ const ProjectItem = (props) => {
       {props.project.pledgeAmount > 0 && 
         <p className="project-item__quantity"><b>{props.project.quantity}</b>left</p>
       }
-      {props.project.pledgeAmount > 0 && props.isSelected &&
+      {selectedItem &&
         <ProjectItemControl 
           pledgeAmount={props.project.pledgeAmount} 
           inputPledgeAmountValue={handleInputPledgeAmountValue}

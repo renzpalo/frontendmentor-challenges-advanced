@@ -1,15 +1,14 @@
 import React, { useState } from 'react';
 
-const SuccessModal = () => {
-  const [isModalClose, setIsModalClose] = useState(false);
+const SuccessModal = (props) => {
+  
   const handleModalClose = (e) => {
-    setIsModalClose(true)
+    props.successModalClose(true);
   };
 
   return (
     <div 
       className="success-modal" 
-      style={{ display: isModalClose ? 'none' : '' }}
     >
       <div className="success-modal__panel">
         <img src="images/icon-check.svg" alt="Check Icon" />

@@ -63,6 +63,10 @@ const Crowdfunding = () => {
     setPledgeSuccess(onSuccess)
   };
 
+  const handleSuccessModalClose = (isClosed) => {
+    setPledgeSuccess(!isClosed);
+  };
+
   return (
     <div id="crowdfunding-page">
       <Header />
@@ -82,7 +86,7 @@ const Crowdfunding = () => {
               onOpenProjectModal={handleOpenProjectModal} 
               onPledgeSuccess={handleOnPledgeSuccess}
             />
-            {pledgeSuccess && <SuccessModal />}
+            {pledgeSuccess && <SuccessModal successModalClose={handleSuccessModalClose} />}
           </Container>
         </section>
       </main>

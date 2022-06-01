@@ -1,7 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const ProjectItemControl = (props) => {
   const [pledgeAmount, setPledgeAmount] = useState(props.pledgeAmount);
+
+  useEffect(() => {
+    props.inputPledgeAmountValue(pledgeAmount);
+  }, []);
 
   const handlePledgeAmountChange = (e) => {
     setPledgeAmount(e.target.value);
