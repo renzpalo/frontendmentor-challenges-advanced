@@ -21,10 +21,6 @@ const ProjectItem = (props) => {
         amount: prevState.amount
       }
     });
-
-    console.log(refRadioButton.current.value);
-
-    console.log('ProjectItem > ', pledgeInputData);
   }, [selectedItem]);
 
 

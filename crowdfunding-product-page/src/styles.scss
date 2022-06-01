@@ -48,7 +48,7 @@ header {
   right: 0;
   width: 100%;
   background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0));
-  z-index: 999;
+  z-index: 99999;
 }
 
 .nav {
@@ -88,6 +88,9 @@ header {
     z-index: -1;
 
     .nav-menu__links {
+      display: flex;
+      flex-flow: column wrap;
+      align-items: center;
       margin: 0;
       padding: 0;
       list-style: none;
@@ -112,6 +115,7 @@ header {
           font-weight: 500;
           text-decoration: none;
           transition: .2s background-color ease;
+          cursor: pointer;
 
           &:hover {
             background-color: gainsboro;
@@ -178,10 +182,10 @@ button:disabled {
   height: 24px;
   margin: 0;
   padding: 0;
-  background-image: url(../public/images/icon-close-menu.svg);
+  background-image: url(../public/images/icon-close-menu-solid.svg);
   background-repeat: no-repeat;
   background-position: center;
-  background-color: black;
+  background-color: transparent;
   border: none;
   outline: none;
   cursor: pointer;
@@ -270,6 +274,10 @@ button:disabled {
       text-align: center;
     }
 
+    p {
+      font-size: .9rem;
+    }
+
     > img {
       position: absolute;
       left: 44%;
@@ -313,14 +321,14 @@ button:disabled {
 
     .stats-progress-bar {
       width: 100%;
-      min-height: 10px;
+      min-height: 12px;
       margin: 1rem 0;
       background-color: map.get($theme-colors, 'background');
       border-radius: 32px;
 
       .stats-progress-bar__fill {
         width: 0%;
-        min-height: 10px;
+        min-height: 12px;
         background-color: map.get($theme-colors, 'primary');
         border-radius: 32px;
       }
@@ -328,6 +336,10 @@ button:disabled {
   }
 
   .about-panel {
+
+    > p {
+      font-size: .9rem;
+    }
 
     .crowd-funding__projects {
       display: grid;
@@ -407,7 +419,7 @@ button:disabled {
   .modal-panel {
     max-width: 730px;
     margin: 0 auto;
-    padding: 1.4rem;
+    padding: 2rem 1.4rem;
     background-color: #fff;
     border-radius: 10px;
 
@@ -419,6 +431,7 @@ button:disabled {
 
       h2 {
         margin: 0;
+        font-size: 1.2rem;
       }
     }
 
@@ -512,19 +525,22 @@ button:disabled {
         align-items: center;
         justify-content: space-between;
         gap: 1rem;
+        position: relative;
+
+        &::before {
+          content: '$';
+          position: absolute;
+          left: 25px;
+          color: gray;
+          font-family: inherit;
+          font-weight: 700;
+          opacity: 50%;
+          z-index: 9999;
+        }
 
         .input {
-          position: relative;
           width: 45%;
-
-          &::before {
-            content: '$';
-            display: block;
-            width: 16px;
-            height: 16px;
-            color: gainsboro;
-            z-index: 99999;
-          }
+          position: relative;
         }
 
         .button {
@@ -586,5 +602,57 @@ footer {
 @media (min-width: 1024px) {
   .container {
     padding: 0 1.4rem;
+  }
+
+  .page-cover {
+    background-image: url(../public/images/image-hero-desktop.jpg) !important;
+  }
+
+  header {
+
+    .container {
+      max-width: 1400px;
+    }
+  }
+
+  .nav {
+    min-height: 125px;
+
+    .nav-menu-hamburger {
+      display: none;
+    }
+
+    .nav-menu {
+      display: block;
+      position: initial;
+      width: initial;
+      padding: 0;
+      background: none;
+      z-index: 9999;
+
+      .nav-menu__links {
+        flex-flow: row nowrap;
+        gap: 2rem;
+        background-color: transparent;
+        border-radius: 0;
+
+        li {
+          width: initial;
+          border: none;
+
+          a {
+            padding: 0;
+            color: #fff;
+            font-size: 1rem;
+            font-weight: 400;
+            cursor: pointer;
+
+            &:hover {
+              background-color: transparent;
+            }
+          }
+        }
+      }
+    }
   }
 }

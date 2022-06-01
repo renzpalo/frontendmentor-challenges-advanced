@@ -13,8 +13,6 @@ const ProjectList = (props) => {
 
   const handleSelectProjectItem = (e) => {
     setSelectedProjectItem(e.currentTarget.id);
-
-    console.log(e.currentTarget.id);
   };
 
   // Get data from ProjectItem props.pledgeAmountData
@@ -31,8 +29,6 @@ const ProjectList = (props) => {
 
       setPledgeAmount(null);
     }
-
-    console.log('ProjectList > ', pledgeAmountData);
   };
 
   return (

@@ -70,7 +70,7 @@ const Crowdfunding = () => {
   return (
     <div id="crowdfunding-page">
       <Header />
-      <PageCover coverImage="url(images/image-hero-desktop.jpg)" />
+      <PageCover coverImage="url(images/image-hero-mobile.jpg)" />
       <main>
         <section id="crowdfunding-section">
           <Container>
