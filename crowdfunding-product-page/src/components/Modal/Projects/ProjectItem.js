@@ -56,26 +56,24 @@ const ProjectItem = (props) => {
         null : props.onClick
       }
     >
+      <div className="radio-group">
+        <input 
+          type="radio" 
+          name="project-radio" 
+          className="input-radio" 
+          value={props.project.id}
+          checked={selectedItem} 
+          onChange={handleProjectItemRadioChange} 
+          ref={refRadioButton}
+        />
+      </div>
       <div className="project-item__title">
-        <div className="radio-group">
-          <input 
-            type="radio" 
-            name="project-radio" 
-            className="input-radio" 
-            value={props.project.id}
-            checked={selectedItem} 
-            onChange={handleProjectItemRadioChange} 
-            ref={refRadioButton}
-          />
-          <div className="text-group">
-            <label htmlFor="project-radio">{props.project.title}</label>
-            {props.project.pledgeAmount > 0 && 
-              <small>
-                Pledge ${props.project.pledgeAmount} or more
-              </small>
-            }
-          </div>
-        </div>
+        <label htmlFor="project-radio">{props.project.title}</label>
+        {props.project.pledgeAmount > 0 && 
+          <small>
+            Pledge ${props.project.pledgeAmount} or more
+          </small>
+        }
       </div>
       <p className="project-item__description">{props.project.description}</p>
       {props.project.pledgeAmount > 0 && 

@@ -1,8 +1,16 @@
+import React, { useState } from 'react';
+
 import Panel from "../UI/Panel";
 
 const CrowdFundingHeader = (props) => {
+  const [isBookmarked, setIsBookmarked] = useState(false);
+
   const handleOpenProjectModal = () => {
     props.onOpenProjectModal(true);
+  };
+
+  const handleBookmark = (e) => {
+    setIsBookmarked(isBookmarked ? false : true);
   };
 
   return (
@@ -18,7 +26,11 @@ const CrowdFundingHeader = (props) => {
         >
           Back this project
         </button>
-        <button type="button" className="button-icon button-secondary">
+        <button 
+          type="button" 
+          className={`button-icon button-secondary ${isBookmarked ? 'bookmarked' : ''}`}
+          onClick={handleBookmark}
+        >
           <img src="images/icon-bookmark.svg" alt="Bookmark Icon" />
           <small>Bookmark</small>
         </button>
